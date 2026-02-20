@@ -1,5 +1,5 @@
-# Use official Python 3.10 slim image
-FROM python:3.10-slim
+# Use official Python 3.10 bookworm-slim image for stability
+FROM python:3.10-slim-bookworm
 
 # Set working directory
 WORKDIR /code
@@ -8,7 +8,6 @@ WORKDIR /code
 RUN apt-get update && apt-get install -y \
     gcc \
     libpq-dev \
-    wkhtmltopdf \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy backend requirements
