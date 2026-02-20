@@ -7,7 +7,7 @@ export default function Statements() {
     const [activeTab, setActiveTab] = useState('pnl');
 
     useEffect(() => {
-        api.get('/api/statements/all')
+        api.get('/statements/all')
             .then(res => setData(res.data))
             .catch(() => { })
             .finally(() => setLoading(false));

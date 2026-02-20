@@ -15,8 +15,8 @@ export default function Mapping() {
     const loadData = async () => {
         try {
             const [mRes, maRes] = await Promise.all([
-                api.get('/api/mapping/'),
-                api.get('/api/mapping/master-accounts'),
+                api.get('/mapping/'),
+                api.get('/mapping/master-accounts'),
             ]);
             setMappings(mRes.data);
             setMasterAccounts(maRes.data);
@@ -30,7 +30,7 @@ export default function Mapping() {
     const runAutoMap = async () => {
         setAutoMapping(true);
         try {
-            const res = await api.post('/api/mapping/auto-map');
+            const res = await api.post('/mapping/auto-map');
             toast.success(`Auto-mapped ${res.data.mapped} of ${res.data.total} accounts`);
             loadData();
         } catch (err) {
@@ -42,7 +42,7 @@ export default function Mapping() {
 
     const manualMap = async (mappingId, masterAccountId) => {
         try {
-            await api.post('/api/mapping/manual-map', {
+            await api.post('/mapping/manual-map', {
                 mapping_id: mappingId,
                 master_account_id: parseInt(masterAccountId),
             });

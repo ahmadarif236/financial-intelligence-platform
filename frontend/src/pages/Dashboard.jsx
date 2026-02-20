@@ -10,7 +10,7 @@ export default function Dashboard() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        api.get('/api/dashboard/')
+        api.get('/dashboard/')
             .then(res => setData(res.data))
             .catch(() => { })
             .finally(() => setLoading(false));

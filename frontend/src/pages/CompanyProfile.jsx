@@ -15,7 +15,7 @@ export default function CompanyProfile() {
     const [isNew, setIsNew] = useState(false);
 
     useEffect(() => {
-        api.get('/api/company/')
+        api.get('/company/')
             .then(res => {
                 if (res.data) {
                     setForm(res.data);
@@ -38,8 +38,8 @@ export default function CompanyProfile() {
         try {
             const { id, ...formData } = form;
             const res = isNew
-                ? await api.post('/api/company/', formData)
-                : await api.put('/api/company/', formData);
+                ? await api.post('/company/', formData)
+                : await api.put('/company/', formData);
 
             setForm(res.data);
             setIsNew(false);

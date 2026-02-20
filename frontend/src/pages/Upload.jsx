@@ -11,7 +11,7 @@ export default function Upload() {
     const [historyLoaded, setHistoryLoaded] = useState(false);
 
     const loadHistory = () => {
-        api.get('/api/upload/history').then(res => {
+        api.get('/upload/history').then(res => {
             setHistory(res.data);
             setHistoryLoaded(true);
         });
@@ -30,7 +30,7 @@ export default function Upload() {
         setResult(null);
 
         try {
-            const res = await api.post('/api/upload/trial-balance', formData, {
+            const res = await api.post('/upload/trial-balance', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             setResult(res.data);
@@ -55,7 +55,7 @@ export default function Upload() {
     });
 
     const downloadTemplate = () => {
-        api.get('/api/upload/template', { responseType: 'blob' }).then(res => {
+        api.get('/upload/template', { responseType: 'blob' }).then(res => {
             const url = URL.createObjectURL(res.data);
             const a = document.createElement('a');
             a.href = url;

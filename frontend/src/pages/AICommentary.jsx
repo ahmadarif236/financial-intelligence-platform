@@ -8,7 +8,7 @@ export default function AICommentary() {
 
     const loadCommentary = () => {
         setLoading(true);
-        api.get('/api/ai/commentary')
+        api.get('/ai/commentary')
             .then(res => setCommentary(res.data))
             .catch(() => { })
             .finally(() => setLoading(false));

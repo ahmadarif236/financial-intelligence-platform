@@ -9,7 +9,7 @@ export default function ExportPage() {
     const exportPDF = async () => {
         setExporting('pdf');
         try {
-            const res = await api.get('/api/export/pdf', { responseType: 'blob' });
+            const res = await api.get('/export/pdf', { responseType: 'blob' });
             const url = URL.createObjectURL(res.data);
             const a = document.createElement('a');
             a.href = url;
@@ -27,7 +27,7 @@ export default function ExportPage() {
     const exportExcel = async () => {
         setExporting('excel');
         try {
-            const res = await api.get('/api/export/excel', { responseType: 'blob' });
+            const res = await api.get('/export/excel', { responseType: 'blob' });
             const url = URL.createObjectURL(res.data);
             const a = document.createElement('a');
             a.href = url;

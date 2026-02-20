@@ -25,7 +25,7 @@ export default function Ratios() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        api.get('/api/ratios/')
+        api.get('/ratios/')
             .then(res => setRatios(res.data))
             .catch(() => { })
             .finally(() => setLoading(false));
