@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import {
     LayoutDashboard, Upload, GitBranch, FileText, BarChart3,
-    Brain, Download, Building2, LogOut
+    Brain, Download, Building2, LogOut, Menu, X
 } from 'lucide-react';
 
 const navItems = [
@@ -39,10 +40,27 @@ const navItems = [
 export default function DashboardLayout() {
     const { user, logout } = useAuth();
     const location = useLocation();
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+    const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
     return (
         <div className="layout">
-            <aside className="sidebar">
+            <div className="mobile-header">
+                <div className="mobile-logo">
+                    <h2>GCC CFO AI</h2>
+                </div>
+                <button className="mobile-menu-btn" onClick={toggleMobileMenu}>
+                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+            </div>
+
+            {isMobileMenuOpen && (
+                <div className="mobile-overlay" onClick={closeMobileMenu}></div>
+            )}
+
+            <aside className={`sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
                 <div className="sidebar-logo">
                     <h2>GCC CFO AI</h2>
                     <span>Financial Intelligence Platform</span>
@@ -58,6 +76,7 @@ export default function DashboardLayout() {
                                     to={item.path}
                                     end={item.path === '/dashboard'}
                                     className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
+                                    onClick={closeMobileMenu}
                                 >
                                     <item.icon />
                                     {item.label}
